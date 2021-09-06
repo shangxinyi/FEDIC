@@ -37,8 +37,6 @@ def partition_balance(idxs, num_split: int):
 
     return parts
 
-#indices2targets里面是(idx,label)
-#num_indices：列表长度，即数据量
 def build_non_iid_by_dirichlet(
     seed, indices2targets, non_iid_alpha, num_classes, num_indices, n_workers
 ):
@@ -52,7 +50,7 @@ def build_non_iid_by_dirichlet(
     # partition indices.
     from_index = 0
     splitted_targets = []
-    #向上取整，此时为2
+
     num_splits = math.ceil(n_workers / n_auxi_workers)
     #为[10, 10]
     split_n_workers = [
@@ -63,7 +61,7 @@ def build_non_iid_by_dirichlet(
     ]
     #[0.5, 0.5]
     split_ratios = [_n_workers / n_workers for _n_workers in split_n_workers]
-    #把indices2targets分开
+
     for idx, ratio in enumerate(split_ratios):
         to_index = from_index + int(n_auxi_workers / n_workers * num_indices)
         splitted_targets.append(
