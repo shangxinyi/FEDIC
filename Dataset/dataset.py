@@ -2,7 +2,7 @@ import numpy as np
 from torch.utils.data.dataset import Dataset
 
 
-# 得到是索引
+
 def classify_label(dataset, num_classes: int):
     list_label2indices = [[] for _ in range(num_classes)]
     for idx, datum in enumerate(dataset):
